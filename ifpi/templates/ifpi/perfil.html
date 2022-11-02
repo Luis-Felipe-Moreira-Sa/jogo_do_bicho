@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Perfil User</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h3>Hello my friend {{user.username}}</h3>
+        <a href="{% url 'jogo_do_bicho' %}">Jogo do bicho</a>
+        <br>
+        <a href="{% url 'loteria' %}">Loteria</a>
+        <br>
+        <a href="{% url 'logout_view' %}">logout</a>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+</body>
+</html>

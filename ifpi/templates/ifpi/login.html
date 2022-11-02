@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title></title>
+
+</head>
+<body>
+    <center>
+        <form action="{% url 'login_views' %}" method="post">
+            {% csrf_token %}
+            <label>Login:</label>
+            <input type="text" name="user"><br>
+            <label>Password:</label>
+            <input type="password" name="password">
+            <br>
+            <button>Entrar</button>
+        </form>
+        <div class="resultado">
+            <h3>Resultado {{resultado}}</h3>
+            <h4>{{bichos}}</h4>
+        </div>
+</center>
+</body>
+</html>

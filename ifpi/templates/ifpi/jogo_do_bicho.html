@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+    <div class="half-box spacing">
+        <center>
+        <form action="{% url 'bet' %}" method="post">
+            {% csrf_token %}
+            <label for="aposta">Qual a sua aposta?</label><br>
+            <select name="aposta" id="aposta" data-required>
+                {% for i in lista %}
+                <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select>
+            <button>Apostar</button>
+        </form>
+            <br>
+        </center>
+    </div>
+</p>
+</body>
+</html>
