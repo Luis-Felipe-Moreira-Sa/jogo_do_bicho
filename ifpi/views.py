@@ -79,11 +79,19 @@ def logout_view(request):
 
 
 def jogo_do_bicho(request):
-    return render(request, 'ifpi/jogo_do_bicho.html', {'lista': range(0, 100)})
+    # restritions = bet_restritions()
+    restritions = True
+    print(restritions)
+    context = {
+        'lista': range(0, 100),
+        'restritions': restritions,
+    }
+    return render(request, 'ifpi/jogo_do_bicho.html', context)
 
 
 def loteria(request):
     return render(request, 'ifpi/loteria.html', {})
+
 
 def bet(request):
     var = request.POST['aposta']
@@ -94,21 +102,27 @@ def bet(request):
     }
     return render(request, 'ifpi/login.html', context)
 
-#somando 4 horas no horário atual
-def current_date():
+
+def current_date_time():
     dt = datetime.now()
     print("dt: ", dt)
     add_4 = dt + timedelta(hours=1)
-    print(add_4, " current date")
+    print(add_4, " current_date_time")
+    return add_4
+
+#somando 4 horas no horário atual
+def current_date():
+    add_4 = current_date_time()
     return add_4.date()
 
 
 def bet_restritions():
     saldo = 100 #pegar no banco, model User
     isBalance = (saldo - 5 >=0)
-    now = current_date()
+    now = current_date_time()
     print(now.hour, " HOUR")
-    isRush = (2 >= now.hour >= 22)
+    isRush = (2 <= now.hour <= 22)
+    print(isRush, ' isRush')
     return isRush and isBalance
 
 

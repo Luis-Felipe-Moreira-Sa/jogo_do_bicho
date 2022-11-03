@@ -8,22 +8,32 @@
     <title>Document</title>
 </head>
 <body>
-    <p>
-    <div class="half-box spacing">
-        <center>
-        <form action="{% url 'bet' %}" method="post">
-            {% csrf_token %}
-            <label for="aposta">Qual a sua aposta?</label><br>
-            <select name="aposta" id="aposta" data-required>
-                {% for i in lista %}
-                <option value="{{i}}">{{i}}</option>
-                {% endfor %}
-            </select>
-            <button>Apostar</button>
-        </form>
-            <br>
-        </center>
-    </div>
-</p>
+    {% if restritions %}
+        <p>
+        <div class="half-box spacing">
+            <center>
+            <form action="{% url 'bet' %}" method="post">
+                {% csrf_token %}
+                <label for="aposta">Qual a sua aposta?</label><br>
+                <select name="aposta" id="aposta" data-required>
+                    {% for i in lista %}
+                    <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+                <button>Apostar</button>
+            </form>
+                <br>
+            </center>
+        </div>
+        </p>
+    {% else %}
+    <center>
+        <h4>
+            Fora do horario de aposta
+        </h4>
+        <br>
+        <a href="{% url 'logout_view' %}">logout</a>
+    </center>
+    {% endif %}
 </body>
 </html>
